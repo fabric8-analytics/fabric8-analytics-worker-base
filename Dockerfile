@@ -16,10 +16,14 @@ RUN yum install -y epel-release && \
     /tmp/install_deps/install_deps_rpm.sh && \
     yum clean all
 
-# Work-arounds & hacks:
-# 'pip install --upgrade wheel': http://stackoverflow.com/questions/14296531
+# - pip install --upgrade wheel:
+#   - http://stackoverflow.com/questions/14296531
+# - pip3 install -r fabric8-analytics-worker/requirements.txt:
+#   - to further speed-up worker image build
+#   - https://github.com/fabric8-analytics/fabric8-analytics-worker-base/pull/30
 RUN pip3 install --upgrade pip && pip install --upgrade wheel && \
-    pip3 install alembic psycopg2
+    pip3 install alembic && \
+    pip3 install -r https://raw.githubusercontent.com/fabric8-analytics/fabric8-analytics-worker/be6f025bb35b5a7b757fdc8a17753f8b2e38950e/requirements.txt
 
 # Install javascript deps
 COPY hack/install_deps_npm.sh /tmp/install_deps/
