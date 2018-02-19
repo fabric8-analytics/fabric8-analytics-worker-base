@@ -16,10 +16,14 @@ RUN yum install -y epel-release && \
     /tmp/install_deps/install_deps_rpm.sh && \
     yum clean all
 
-# Work-arounds & hacks:
-# 'pip install --upgrade wheel': http://stackoverflow.com/questions/14296531
+# - pip install --upgrade wheel:
+#   - http://stackoverflow.com/questions/14296531
+# - pip3 install -r fabric8-analytics-worker/requirements.txt:
+#   - to further speed-up worker image build
+#   - https://github.com/fabric8-analytics/fabric8-analytics-worker-base/pull/30
 RUN pip3 install --upgrade pip && pip install --upgrade wheel && \
-    pip3 install alembic psycopg2
+    pip3 install alembic gofedlib && \
+    pip3 install -r https://raw.githubusercontent.com/fabric8-analytics/fabric8-analytics-worker/be6f025bb35b5a7b757fdc8a17753f8b2e38950e/requirements.txt
 
 # Install javascript deps
 COPY hack/install_deps_npm.sh /tmp/install_deps/
@@ -51,9 +55,6 @@ RUN /tmp/install_deps/install_scancode.sh
 COPY ./hack/py23requirements.txt /tmp/install_deps/
 RUN pip2 install -r /tmp/install_deps/py23requirements.txt
 RUN pip3 install -r /tmp/install_deps/py23requirements.txt
-
-# Install gofedlib needed for Go support
-RUN pip2 install --egg git+https://github.com/gofed/gofedlib.git@18e0ce72d2c7bcbe3b19c20378f602633292eedf
 
 # Create & set pcp dirs
 RUN mkdir -p /etc/pcp /var/run/pcp /var/lib/pcp /var/log/pcp  && \
