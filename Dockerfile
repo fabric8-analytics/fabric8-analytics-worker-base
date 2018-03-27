@@ -4,11 +4,14 @@ ENV LANG=en_US.UTF-8 \
     JAVANCSS_PATH='/opt/javancss/' \
     OWASP_DEP_CHECK_PATH='/opt/dependency-check/' \
     OWASP_DEP_CHECK_SUPPRESS_PATH='/opt/dependency-check/suppress/' \
-    SCANCODE_PATH='/opt/scancode-toolkit/'
+    SCANCODE_PATH='/opt/scancode-toolkit/' \
+    NODE_VERSION=8.3.0
 
 # https://copr.fedorainfracloud.org/coprs/jpopelka/mercator/
 # https://copr.fedorainfracloud.org/coprs/fche/pcp/
 COPY hack/_copr_jpopelka-mercator.repo hack/_copr_fche_pcp.repo /etc/yum.repos.d/
+
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - && yum install -y nodejs
 
 # Install RPM dependencies
 COPY hack/install_deps_rpm.sh /tmp/install_deps/
