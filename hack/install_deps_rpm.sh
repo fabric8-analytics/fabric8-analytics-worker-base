@@ -15,7 +15,7 @@ REQUIREMENTS_TXT='postgresql-devel python34-devel libxml2-devel libxslt-devel py
 DB_MIGRATIONS='postgresql'
 
 # f8a_worker/process.py
-PROCESS_PY='git unzip zip tar file findutils npm'
+PROCESS_PY='git unzip zip tar file findutils'
 
 # DigesterTask
 DIGESTER='ssdeep'
