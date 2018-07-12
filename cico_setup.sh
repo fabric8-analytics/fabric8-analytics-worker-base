@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-REGISTRY="push.registry.devshift.net"
+REGISTRY="quay.io"
 
 load_jenkins_vars() {
     if [ -e "jenkins-env.json" ]; then
