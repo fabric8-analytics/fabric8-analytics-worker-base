@@ -1,7 +1,11 @@
 FROM registry.centos.org/centos/centos:7
 
 ENV LANG=en_US.UTF-8 \
+    M2_CACHE='/m2_repo/' \
     SCANCODE_PATH='/opt/scancode-toolkit/'
+
+
+RUN mkdir -p ${M2_CACHE}
 
 # https://copr.fedorainfracloud.org/coprs/jpopelka/mercator/
 # https://copr.fedorainfracloud.org/coprs/fche/pcp/
@@ -43,4 +47,12 @@ RUN mkdir -p /etc/pcp /var/run/pcp /var/lib/pcp /var/log/pcp  && \
 COPY hack/patches/* /tmp/install_deps/patches/
 # Apply patches here to be able to patch selinon as well
 RUN /tmp/install_deps/patches/apply_patches.sh
+
+# Cache few Maven plugins and dependencies
+COPY pom.xml /tmp/pom.xml
+RUN cd /tmp && \
+    mvn -Dmaven.repo.local=${M2_CACHE} clean verify org.apache.maven.plugins:maven-help-plugin:3.1.0:effective-pom && \
+    rm /tmp/pom.xml && \
+    chown -R 999:999 ${M2_CACHE} && \
+    find ${M2_CACHE} -exec chmod 1777 {} +
 
