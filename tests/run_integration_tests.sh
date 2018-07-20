@@ -2,7 +2,7 @@
 
 # Run basic sanity checks
 
-worker_base_image=${WORKER_BASE_IMAGE:-registry.devshift.net/fabric8-analytics/f8a-worker-base:latest}
+worker_base_image=${WORKER_BASE_IMAGE:-quay.io/fabric8-analytics-f8a-worker-base:latest}
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 check_script="${here}/check.sh"
 
