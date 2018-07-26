@@ -32,9 +32,14 @@ PCP="pcp"
 TAGGER_DEP="libarchive"
 
 # Install all RPM deps
-yum install -y --setopt=tsflags=nodocs ${BUILD} ${REQUIREMENTS_TXT} \
-                ${DB_MIGRATIONS} ${PROCESS_PY} \
-                ${DIGESTER} ${LINGUIST} \
-                ${OSCRYPTOCATCHER} ${CSMOCK_TASK_DEPS} \
-                ${BD_DEPS} ${BREWUTILS} ${MERCATOR} ${CODE_METRICS} \
-                ${DEPENDENCY_CHECK} ${GOLANG_SUPPORT} ${PCP} ${TAGGER_DEP}
+yum install -y --setopt=tsflags=nodocs \
+    ${BUILD} \
+    ${REQUIREMENTS_TXT} \
+    ${DB_MIGRATIONS} \
+    ${PROCESS_PY} \
+    ${DIGESTER} \
+    ${MERCATOR} \
+    ${GOLANG_SUPPORT} \
+    ${PCP} \
+    ${TAGGER_DEP}
+
