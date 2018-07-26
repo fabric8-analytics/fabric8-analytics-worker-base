@@ -7,9 +7,9 @@ ENV LANG=en_US.UTF-8 \
 
 RUN mkdir -p ${M2_CACHE}
 
-# https://copr.fedorainfracloud.org/coprs/jpopelka/mercator/
+# https://copr.fedorainfracloud.org/coprs/msrb/mercator/
 # https://copr.fedorainfracloud.org/coprs/fche/pcp/
-COPY hack/_copr_jpopelka-mercator.repo hack/_copr_fche_pcp.repo /etc/yum.repos.d/
+COPY hack/_copr_msrb-mercator-epel-7.repo hack/_copr_fche_pcp.repo /etc/yum.repos.d/
 
 # Install RPM dependencies
 COPY hack/install_deps_rpm.sh /tmp/install_deps/
