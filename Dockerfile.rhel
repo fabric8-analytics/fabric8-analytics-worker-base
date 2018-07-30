@@ -27,7 +27,7 @@ RUN pip2 install -r /tmp/install_deps/py23requirements.txt
 RUN pip3 install -r /tmp/install_deps/py23requirements.txt
 
 # Install gofedlib needed for Go support
-RUN pip2 install --egg git+https://github.com/gofed/gofedlib.git@18e0ce72d2c7bcbe3b19c20378f602633292eedf
+RUN pip2 install --egg git+https://github.com/gofed/gofedlib.git@369a23443374dc4fdbe2aa8fed69348c706da36b
 
 # Create & set pcp dirs
 RUN mkdir -p /etc/pcp /var/run/pcp /var/lib/pcp /var/log/pcp  && \
