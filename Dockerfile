@@ -19,7 +19,8 @@ RUN yum install -y epel-release && \
 
 # Work-arounds & hacks:
 # 'pip install --upgrade wheel': http://stackoverflow.com/questions/14296531
-RUN pip3 install --upgrade 'pip>=10.0.0' && pip install --upgrade wheel && \
+RUN pip3 install --upgrade 'pip>=10.0.0' && \
+    pip install --upgrade wheel && \
     pip3 install alembic psycopg2
 
 # Install javascript deps
@@ -29,11 +30,6 @@ RUN /tmp/install_deps/install_deps_npm.sh
 # Install ScanCode-toolkit for license scan
 COPY hack/install_scancode.sh /tmp/install_deps/
 RUN /tmp/install_deps/install_scancode.sh
-
-# Install dependencies required in both Python 2 and 3 versions
-COPY ./hack/py23requirements.txt /tmp/install_deps/
-RUN pip2 install -r /tmp/install_deps/py23requirements.txt
-RUN pip3 install -r /tmp/install_deps/py23requirements.txt
 
 # Install gofedlib needed for Go support
 RUN pip2 install --egg git+https://github.com/gofed/gofedlib.git@369a23443374dc4fdbe2aa8fed69348c706da36b
