@@ -32,7 +32,8 @@ COPY hack/install_scancode.sh /tmp/install_deps/
 RUN /tmp/install_deps/install_scancode.sh
 
 # Install gofedlib needed for Go support
-RUN pip2 install --egg git+https://github.com/gofed/gofedlib.git@369a23443374dc4fdbe2aa8fed69348c706da36b
+# TODO: Move away from fork to upstream once https://github.com/gofed/gofedlib/pull/27 is merged
+RUN pip2 install --egg git+https://github.com/msrb/gofedlib.git@update-ip2pp
 
 # Create & set pcp dirs
 RUN mkdir -p /etc/pcp /var/run/pcp /var/lib/pcp /var/log/pcp  && \
