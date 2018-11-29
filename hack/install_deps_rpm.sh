@@ -7,7 +7,8 @@ BUILD="python34-pip python2-pip wget which"
 # - Installing python-requests is a work-around for a conflict which happens when you do
 #   'pip install requests; yum install python-requests' (while it's OK if you swap those)
 #   It can be removed once gofedlib runs on Python 3.
-REQUIREMENTS_TXT='postgresql-devel python34-devel libxml2-devel libxslt-devel python-requests patch'
+# python34-pycurl is needed by kombu
+REQUIREMENTS_TXT='postgresql-devel python34-devel python34-requests python34-pycurl libxml2-devel libxslt-devel python-requests python patch'
 
 # hack/run-db-migrations.sh
 DB_MIGRATIONS='postgresql'
