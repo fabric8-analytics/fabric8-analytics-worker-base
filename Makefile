@@ -14,6 +14,7 @@ DEFAULT_TAG=latest
 all: fast-docker-build
 
 docker-build:
+	echo $(DOCKERFILE)
 	docker build --no-cache -t $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) -f $(DOCKERFILE) .
 
 fast-docker-build:
