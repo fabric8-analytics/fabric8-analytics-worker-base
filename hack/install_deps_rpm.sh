@@ -1,6 +1,6 @@
 #!/usr/bin/sh -e
 
-yum search mercator
+# yum search mercator
 
 # Required by Dockerfile or any built-time script in hack/
 BUILD="python36-pip python2-pip wget which"
@@ -22,7 +22,7 @@ PROCESS_PY='git unzip zip tar file findutils npm'
 DIGESTER='ssdeep'
 
 # mercator-go
-MERCATOR="mercator-1-32.el7.x86_64"
+MERCATOR="mercator"
 
 GOLANG_SUPPORT="golang"
 
