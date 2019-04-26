@@ -1,14 +1,16 @@
 #!/usr/bin/sh -e
 
+# yum search mercator
+
 # Required by Dockerfile or any built-time script in hack/
-BUILD="python34-pip python2-pip wget which"
+BUILD="python36-pip python2-pip wget which"
 
 # - We need postgresql-devel and python3-devel for psycopg2 listed in f8a_worker/requirements.txt
 # - Installing python-requests is a work-around for a conflict which happens when you do
 #   'pip install requests; yum install python-requests' (while it's OK if you swap those)
 #   It can be removed once gofedlib runs on Python 3.
-# python34-pycurl is needed by kombu
-REQUIREMENTS_TXT='postgresql-devel python34-devel python34-requests python34-pycurl libxml2-devel libxslt-devel python-requests python patch'
+# python36-pycurl is needed by kombu
+REQUIREMENTS_TXT='postgresql-devel python36-devel python36-requests python36-pycurl libxml2-devel libxslt-devel python-requests python patch'
 
 # hack/run-db-migrations.sh
 DB_MIGRATIONS='postgresql'
@@ -20,7 +22,7 @@ PROCESS_PY='git unzip zip tar file findutils npm'
 DIGESTER='ssdeep'
 
 # mercator-go
-MERCATOR="mercator-1-32.el7.x86_64"
+MERCATOR="mercator"
 
 GOLANG_SUPPORT="golang"
 
@@ -41,4 +43,3 @@ yum install -y --setopt=tsflags=nodocs \
     ${GOLANG_SUPPORT} \
     ${PCP} \
     ${TAGGER_DEP}
-
